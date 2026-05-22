@@ -1,0 +1,14 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/interview_system_prod
+    username: root
+    password: 1111
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    show-sql: false
