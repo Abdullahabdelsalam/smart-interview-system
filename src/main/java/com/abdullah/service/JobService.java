@@ -4,6 +4,8 @@ import com.abdullah.entity.Job;
 import com.abdullah.exception.ResourceNotFoundException;
 import com.abdullah.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,19 +18,24 @@ public class JobService {
 //    public JobService(JobRepository jobRepository) {
 //        this.jobRepository = jobRepository;
 //    }
+private static final Logger logger =
+        LoggerFactory.getLogger(JobService.class);
 
     //create job
     public Job save(Job job){
+        logger.info("Creating new job: {}", job.getTitle());
         return jobRepository.save(job);
     }
 
     // All job
     public List<Job> findAll(){
+        logger.info("Fetching all jobs");
         return jobRepository.findAll();
     }
 
     //All Job
     public Job findById(Long id){
+        logger.info("Fetching job by id: {}", id);
         return jobRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Job not found with id: " + id));
     }
@@ -40,13 +47,16 @@ public class JobService {
             existingJob.setTitle(updateJob.getTitle());
             existingJob.setDescription(updateJob.getDescription());
             existingJob.setDepartment(updateJob.getDepartment());
+            logger.info("Updating job: {}", existingJob);
             return jobRepository.save(existingJob);
         }
+        logger.error("Job not found with id: {}", id);
         return null;
     }
 
     // delete job
     public void deleteById(Long id){
+        logger.info("Deleting job with id: {}", id);
         jobRepository.deleteById(id);
     }
 }
