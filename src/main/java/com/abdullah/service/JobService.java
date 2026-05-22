@@ -3,7 +3,6 @@ package com.abdullah.service;
 import com.abdullah.entity.Job;
 import com.abdullah.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.service.NullServiceException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @Service
 public class JobService {
     private final JobRepository jobRepository;
-    
+
 //    public JobService(JobRepository jobRepository) {
 //        this.jobRepository = jobRepository;
 //    }

@@ -6,13 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Entity
-@Table(name="jobs")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name="jobs")
+@Entity
 public class Job {
 
     @Id
