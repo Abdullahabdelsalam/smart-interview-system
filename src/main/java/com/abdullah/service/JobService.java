@@ -1,6 +1,7 @@
 package com.abdullah.service;
 
 import com.abdullah.entity.Job;
+import com.abdullah.exception.ResourceNotFoundException;
 import com.abdullah.repository.JobRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,8 @@ public class JobService {
 
     //All Job
     public Job findById(Long id){
-        return jobRepository.findById(id).orElse(null);
+        return jobRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Job not found with id: " + id));
     }
 
     //Update job
